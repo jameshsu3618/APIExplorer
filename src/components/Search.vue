@@ -8,15 +8,14 @@ se
 				:favoriteMode="favoriteMode"
 			/>
 			<v-flex class="mt-0 align-right" xs2>
-								<v-btn class="modal-btn" outline color="white" v-on:click='show()'>
-									<v-icon>settings</v-icon>
-								</v-btn>
-							</v-flex>
-							<modal name="setting-modal":width="300"
-         :height="300" >
-							<settings-modal :settings="settings">
-							</settings-modal>
-							</modal>
+				<v-btn class="modal-btn" outline color="white" v-on:click='show()'>
+					<v-icon>settings</v-icon>
+				</v-btn>
+			</v-flex>
+			<modal name="setting-modal":width="300" :height="300" >
+				<settings-modal :settings="settings">
+				</settings-modal>
+			</modal>
 			<div class="search-panel">
 				<div class="search-bar">
 					<v-form @submit.prevent="submitSearch()">
@@ -83,10 +82,10 @@ se
 
 <script>
 	/* =====================================================
-	 to-do rewrite app to import search and everything else
-	  	independently (refactor out favorite into a component
-		wanted to make it as lightweight as possible.
-		===================================================== */
+	to-do rewrite app to import search and everything else
+	independently (refactor out favorite into a component)
+	and utilize store
+	====================================================== */
 	import itunessearchapi from '../itunessearchapi';
 	import DataTiles from './DataTiles.vue';
 	import Background from './Background.vue'
@@ -164,7 +163,6 @@ se
 					this.data = [];
 				}
 			},
-
 			submitSearch () {
 				if (this.search == "" || this.search == null){
 					return;
@@ -181,12 +179,12 @@ se
 				}
 				localStorage.setItem('settings', JSON.stringify(this.settings));
 				itunessearchapi(params)
-					.then((response) => {
-						let data = response.results.sort((a, b) => a.releaseDate > b.releaseDate ? -1 : 1);
-						data = data.sort((a, b) => a.wrapperType < b.wrapperType ? -1 : 1);
-						data = data.sort((a, b) => a.kind < b.kind ? -1 : 1);
-						this.data = data;
-					});
+				.then((response) => {
+					let data = response.results.sort((a, b) => a.releaseDate > b.releaseDate ? -1 : 1);
+					data = data.sort((a, b) => a.wrapperType < b.wrapperType ? -1 : 1);
+					data = data.sort((a, b) => a.kind < b.kind ? -1 : 1);
+					this.data = data;
+				});
 			},
 		},
 	}
