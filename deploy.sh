@@ -13,6 +13,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:jameshsu3618/jameshsu3618itunes.git master:gh-pages
+git push -f git@github.com:jameshsu3618/itunesexplorer.git master:gh-pages
 
 cd -
