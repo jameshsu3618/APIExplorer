@@ -44,8 +44,8 @@
 	props: ['settings'],
 	data: function (){
 		return {
-			countries: {'AU':	'Australia', 'BR':	'Brazil','CA':	'Canada', 'CN':	'China','TW':	'Taiwan','GB':	'United Kingdom','US':	'United States'},
-			btnColor: ['red', 'orange', 'yellow', 'green','blue', 'pink', 'purple'],
+			countries: {'AU': 'Australia','BR': 'Brazil', 'CA':	'Canada', 'CN':	'China', 'TW': 'Taiwan','GB': 'United Kingdom','US': 'United States'},
+			btnColor: ['red', 'orange', 'yellow', 'green', 'blue', 'pink', 'purple'],
 		}
 	}
 }
@@ -75,5 +75,4 @@
 		display: inline-block;
 		padding: 3px;
 	}
-
 </style>
