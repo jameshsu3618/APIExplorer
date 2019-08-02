@@ -26,3 +26,9 @@ npm run build
 npm run test
 ```
 
+### Browser Compatibility
+```
+Works Best on Chrome, Edge 18. 
+Minor Issues observed on Safari.
+Major issues observed on Firefox, IE11.
+```
