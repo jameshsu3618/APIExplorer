@@ -30,26 +30,23 @@
 </template>
 <script>
 export default {
-  name: 'Backgound',
-  props: ['data', 'search'],
+	name: 'Backgound',
+	props: ['data', 'search'],
 	methods: {
-			displayText: function(data){
-				if (this.search == "" || this.search == null){
-					return "iTunes Explorer";
-				}
-				else
-					return data.length ? "" : 'Typing.....';
-			},
-
-			resizeArtworkUrl (album, size= '160x160') {
-				return album.artworkUrl100 != undefined ? album.artworkUrl100.replace("100x100", `${size}`) : '';
-			},
-
-		}
+		displayText: function(data){
+			if (this.search == "" || this.search == null){
+				return "iTunes Explorer";
+			}
+			else
+				return data.length ? "" : 'Typing.....';
+		},
+		resizeArtworkUrl (album, size= '160x160') {
+			return album.artworkUrl100 != undefined ? album.artworkUrl100.replace("100x100", `${size}`) : '';
+		},
 	}
+}
 </script>
 <style scoped>
-
 	.top {
 		height: 30em;
 		position: relative;
@@ -68,13 +65,11 @@ export default {
 		left: 0px;
 		z-index: 1;
 	}
-
-
 	.headerContainer {
 		padding-top: 10em;
 		vertical-align: center;
 	}
-.slide-div {
+	.slide-div {
 		position: relative;
 		overflow: hidden;
 		height: 100%; /* Or set a fixed height */
@@ -82,7 +77,8 @@ export default {
 		html, body { height: 100%; }
 		body { margin: 0; font: 16px/1.3 sans-serif; 
 	}
-		/* NAVIGATION BUTTONS */
+
+	/* NAVIGATION BUTTONS */
 	/* ALL: */
 	.slide-div >s:target ~ .bullets >* {      background: rgba(255, 255, 255, 0.5);}
 	/* ACTIVE */
@@ -91,7 +87,6 @@ export default {
 	#s3:target ~ .bullets >*:nth-child(3) {background: rgba(255, 255, 255,   1);}
 	#s4:target ~ .bullets >*:nth-child(4) {background: rgba(255, 255, 255,   1);}
 	#s5:target ~ .bullets >*:nth-child(4) {background: rgba(255, 255, 255,   1);}
-	/* More slides? Add here more rules */
 
 	/* PREV/NEXT CONTAINERS VISIBILITY */
 	/* ALL: */
@@ -102,7 +97,6 @@ export default {
 	#s3:target ~ .prevNext >*:nth-child(3) {visibility: visible;}
 	#s4:target ~ .prevNext >*:nth-child(4) {visibility: visible;}
 	#s5:target ~ .prevNext >*:nth-child(5) {visibility: visible;}
-	/* More slides? Add here more rules */
 
 	/* SLIDER ANIMATION POSITIONS */
 
@@ -152,11 +146,11 @@ export default {
 	.slide-div .prevNext a {
 		background: #fff;
 		position: absolute;
-	  top: 50%;
-	  width: 2em;
-	  padding-top: 30em;
-	  color: white;
-	  transition: 0.6s ease;
+		top: 50%;
+		width: 2em;
+		padding-top: 30em;
+		color: white;
+		transition: 0.6s ease;
 		opacity: 0.5;
 		-webkit-transition: 0.3s;
 						transition: 0.3s;
@@ -171,6 +165,4 @@ export default {
 		left: auto;
 		right: 0;
 	}
-
-	/* NAVIGATION */
 </style>
