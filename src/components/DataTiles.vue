@@ -23,7 +23,6 @@
 					<v-icon :class="{favorited: isFav(tile),'favorite-btn': true}" :key="favLength" v-on:click="favorite(tile)" >favorite</v-icon>
 				</v-flex>
 			</div>
-
 		</v-layout>
 	</v-card-text>
 </template>
@@ -97,7 +96,6 @@ export default {
 		resizeArtworkUrl (data, size= '160x160') {
 			return data.artworkUrl100 != undefined ? data.artworkUrl100.replace("100x100", `${size}`) : '';
 		},
-
 		toiTunes (data) {
 			if (data.collectionViewUrl == undefined){
 				window.open(data.artistLinkUrl, '_blank');
@@ -197,5 +195,4 @@ export default {
 	    border-radius: 16px;
 	    color: white;
 	}
-</style>
 </style>
