@@ -1,4 +1,3 @@
-se
 <template>
 	<v-flex>
 		<v-card>
