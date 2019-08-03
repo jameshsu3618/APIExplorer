@@ -82,7 +82,7 @@ module.exports = promisify ((params, timeout, callback) => {
 		callback (new Error ('invalid params'));
 		return;
 	}
-	
+
 	options.params.version = params.version || 2;
 	options.timeout = timeout;
 	httpRequest (options, callback);

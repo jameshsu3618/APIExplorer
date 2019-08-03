@@ -27,84 +27,84 @@
 	</v-card-text>
 </template>
 <script>
-export default {
-	props: ['data', 'favoriteList'],
-	data: function(){
-		return {
-			kinds: ['artist', 'collection', 'book', 'album', 'coached-audio', 'feature-movie', 'interactive- booklet', 'music-video', 'podcast', 'podcast-episode', 'software-package', 'song', 'tv- episode'],
-			favLength: Object.keys(this.favoriteList).length,
-		}
-	},
-	methods:{
-		filterData(data, index){
-			let kind = this.kinds[index-1];
-			if (index < 3){
-				return data.filter(function(t) {
-         			return t.wrapperType == kind;
-    		 })
-			}
-			else{
-				return data.filter(function(t) {
-         			return t.kind == kind;
-    			})
-    		}
-		},
-		isFav(data){
-			return this.isInFavList(data);
-		},
-		isInFavList(data){
-			let url = "";
-			if (data.collectionViewUrl == undefined){
-				url = data.artistLinkUrl != undefined? data.artistLinkUrl : data.previewUrl;
-			}else{
-				url = data.collectionViewUrl;
-			}
-			let isInFavList = url in this.favoriteList;
-			return isInFavList;
-		},
-		updateFavStore(){
-			let favList = JSON.stringify(this.favoriteList);
-			localStorage.setItem('favoriteList', favList);
-		},
-		favorite (data){
-			let url = "";
-			if (data.collectionViewUrl == undefined){
-				url = data.artistLinkUrl != undefined? data.artistLinkUrl : data.previewUrl;
-			}else{
-				url = data.collectionViewUrl;
-			}
-			if (this.isInFavList(data)){
-				delete this.favoriteList[url];
-				this.updateFavStore();
-				this.favLength -=1;
-			}
-			else{
-				this.favoriteList[url] = data;
-				this.updateFavStore();
-				this.favLength +=1;
+	export default {
+		props: ['data', 'favoriteList'],
+		data: function(){
+			return {
+				kinds: ['artist', 'collection', 'book', 'album', 'coached-audio', 'feature-movie', 'interactive- booklet', 'music-video', 'podcast', 'podcast-episode', 'software-package', 'song', 'tv- episode'],
+				favLength: Object.keys(this.favoriteList).length,
 			}
 		},
-		getReleaseYear (data) {
-			return data.releaseDate != undefined ? data.releaseDate.substr(0, 4) : '';
+		methods:{
+			filterData(data, index){
+				let kind = this.kinds[index-1];
+				if (index < 3){
+					return data.filter(function(t) {
+	         			return t.wrapperType == kind;
+	    		 })
+				}
+				else{
+					return data.filter(function(t) {
+	         			return t.kind == kind;
+	    			})
+	    		}
+			},
+			isFav(data){
+				return this.isInFavList(data);
+			},
+			isInFavList(data){
+				let url = "";
+				if (data.collectionViewUrl == undefined){
+					url = data.artistLinkUrl != undefined? data.artistLinkUrl : data.previewUrl;
+				}else{
+					url = data.collectionViewUrl;
+				}
+				let isInFavList = url in this.favoriteList;
+				return isInFavList;
+			},
+			updateFavStore(){
+				let favList = JSON.stringify(this.favoriteList);
+				localStorage.setItem('favoriteList', favList);
+			},
+			favorite (data){
+				let url = "";
+				if (data.collectionViewUrl == undefined){
+					url = data.artistLinkUrl != undefined? data.artistLinkUrl : data.previewUrl;
+				}else{
+					url = data.collectionViewUrl;
+				}
+				if (this.isInFavList(data)){
+					delete this.favoriteList[url];
+					this.updateFavStore();
+					this.favLength -=1;
+				}
+				else{
+					this.favoriteList[url] = data;
+					this.updateFavStore();
+					this.favLength +=1;
+				}
+			},
+			getReleaseYear (data) {
+				return data.releaseDate != undefined ? data.releaseDate.substr(0, 4) : '';
+			},
+			getGenre (data) {
+				return data.primaryGenreName != undefined ? data.primaryGenreName : '';
+			},
+			getName (data) {
+				return data.collectionName != undefined ? data.collectionName : data.trackName;
+			},
+			resizeArtworkUrl (data, size= '160x160') {
+				return data.artworkUrl100 != undefined ? data.artworkUrl100.replace("100x100", `${size}`) : '';
+			},
+			toiTunes (data) {
+				if (data.collectionViewUrl == undefined){
+					window.open(data.artistLinkUrl, '_blank');
+				}else{
+					window.open(data.collectionViewUrl, '_blank');
+				}
+			},
 		},
-		getGenre (data) {
-			return data.primaryGenreName != undefined ? data.primaryGenreName : '';
-		},
-		getName (data) {
-			return data.collectionName != undefined ? data.collectionName : data.trackName;
-		},
-		resizeArtworkUrl (data, size= '160x160') {
-			return data.artworkUrl100 != undefined ? data.artworkUrl100.replace("100x100", `${size}`) : '';
-		},
-		toiTunes (data) {
-			if (data.collectionViewUrl == undefined){
-				window.open(data.artistLinkUrl, '_blank');
-			}else{
-				window.open(data.collectionViewUrl, '_blank');
-			}
-		},
-	},
-}
+	}
 </script>
 <style>
 	img[src=""] {

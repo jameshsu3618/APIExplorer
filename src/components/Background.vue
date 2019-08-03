@@ -31,14 +31,25 @@
 <script>
 export default {
 	name: 'Backgound',
-	props: ['data', 'search'],
+	props: ['data', 'search', 'error'],
 	methods: {
 		displayText: function(data){
 			if (this.search == "" || this.search == null){
 				return "iTunes Explorer";
 			}
-			else
-				return data.length ? "" : 'Typing.....';
+			else{
+				if (data.length){
+					return '';
+				}
+				else {
+					if (this.error == ''){
+						return 'Typing';
+					}
+					else {
+						return this.error['message'];
+					}
+				}
+			}
 		},
 		resizeArtworkUrl (album, size= '160x160') {
 			return album.artworkUrl100 != undefined ? album.artworkUrl100.replace("100x100", `${size}`) : '';
@@ -75,7 +86,7 @@ export default {
 		height: 100%; /* Or set a fixed height */
 		box-sizing: border-box; -webkit-box-sizing: border-box; }
 		html, body { height: 100%; }
-		body { margin: 0; font: 16px/1.3 sans-serif; 
+		body { margin: 0; font: 16px/1.3 sans-serif;
 	}
 
 	/* NAVIGATION BUTTONS */

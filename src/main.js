@@ -7,5 +7,5 @@ import VModal from 'vue-js-modal'
 Vue.use(VModal)
 
 new Vue({
-  render: h => h(App)
+	render: h => h(App)
 }).$mount('#app')

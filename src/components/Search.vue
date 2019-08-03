@@ -5,6 +5,7 @@
 				:data="data"
 				:search="search"
 				:favoriteMode="favoriteMode"
+				:error="error"
 			/>
 			<v-flex class="mt-0 align-right" xs2>
 				<v-btn class="modal-btn" outline color="white" v-on:click='show()'>
@@ -105,6 +106,7 @@
 				filter: '',
 				filtered: [false, false, false, false, false],
 				settings: localStorage.getItem('settings')? JSON.parse(localStorage.getItem('settings')): {'country': 'US', 'numResults': 50,'btnColor':'pink'},
+				error: '',
 			}
 		},
 		watch: {
@@ -178,12 +180,15 @@
 				}
 				localStorage.setItem('settings', JSON.stringify(this.settings));
 				itunessearchapi(params)
-				.then((response) => {
-					let data = response.results.sort((a, b) => a.releaseDate > b.releaseDate ? -1 : 1);
-					data = data.sort((a, b) => a.wrapperType < b.wrapperType ? -1 : 1);
-					data = data.sort((a, b) => a.kind < b.kind ? -1 : 1);
-					this.data = data;
-				});
+					.then((response) => {
+						let data = response.results.sort((a, b) => a.releaseDate > b.releaseDate ? -1 : 1);
+						data = data.sort((a, b) => a.wrapperType < b.wrapperType ? -1 : 1);
+						data = data.sort((a, b) => a.kind < b.kind ? -1 : 1);
+						this.data = data;
+					})
+					.catch(e => {
+						this.error = e;
+					});
 			},
 		},
 	}
