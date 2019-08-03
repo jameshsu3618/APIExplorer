@@ -32,6 +32,7 @@
 export default {
 	name: 'Backgound',
 	props: ['data', 'search', 'error'],
+
 	methods: {
 		displayText: function(data){
 			if (this.search == "" || this.search == null){
@@ -42,11 +43,11 @@ export default {
 					return '';
 				}
 				else {
-					if (this.error == ''){
+					if (this.error == '' ){
 						return 'Typing';
 					}
 					else {
-						return this.error['message'];
+						return this.error;
 					}
 				}
 			}

@@ -33,6 +33,7 @@
 									dark
 									clearable
 									v-on:keyout="submitSearch()"
+									v-on:keyup="toggleError()"
 									:label="getLabel()"
 								></v-text-field>
 							</v-flex>
@@ -139,6 +140,9 @@
 					return data.length ? "" : 'Typing.....';
 				}
 			},
+			toggleError(){
+				this.error = "";
+			},
 			isFiltered(index){
 				return this.filtered[index];
 			},
@@ -181,13 +185,14 @@
 				localStorage.setItem('settings', JSON.stringify(this.settings));
 				itunessearchapi(params)
 					.then((response) => {
+						this.error = "";
 						let data = response.results.sort((a, b) => a.releaseDate > b.releaseDate ? -1 : 1);
 						data = data.sort((a, b) => a.wrapperType < b.wrapperType ? -1 : 1);
 						data = data.sort((a, b) => a.kind < b.kind ? -1 : 1);
 						this.data = data;
 					})
 					.catch(e => {
-						this.error = e;
+						this.error = e['message'];
 					});
 			},
 		},
