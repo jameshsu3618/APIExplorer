@@ -1,5 +1,9 @@
 # iTunes Explorer
 
+A simple Vue app built to favorite and save iTunes search results.
+
+Deployed at: https://jameshsu3618.github.io/itunesexplorer/
+
 <p align="center">
     <img src="images/screen_shot.png">
 </p>
