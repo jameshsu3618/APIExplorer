@@ -1,4 +1,7 @@
-# iTunes Explorer
+# Entertainment Explorer
+
+A simple react Youtube And Video Explorer 
+
 
 A simple Vue app built to search and favorite items from iTunes API.
 
